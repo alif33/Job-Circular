@@ -8,6 +8,12 @@ target 'JobCircularNext' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'react-native-onesignal', :path => '../node_modules/react-native-onesignal'
+
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+
+  pod 'react-native-pdf', :path => '../node_modules/react-native-pdf'
+
   target 'JobCircularNextTests' do
     inherit! :complete
     # Pods for testing

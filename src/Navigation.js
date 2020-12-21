@@ -9,7 +9,6 @@ import Notifications from './screen/Notifications'
 import Info from './screen/Info'
 import Search from './screen/Search'
 
-
 const Drawer = createDrawerNavigator()
 
 const AppNavigator = props =>{

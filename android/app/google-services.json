@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "180705402227",
+    "firebase_url": "https://jobcircular-a4e2d.firebaseio.com",
+    "project_id": "jobcircular-a4e2d",
+    "storage_bucket": "jobcircular-a4e2d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:180705402227:android:4eb43189a82c8e16f8f906",
+        "android_client_info": {
+          "package_name": "com.jobcircularnext"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "180705402227-fqj3vnfv6qbqj9ljc4kf77vo2k23v0lk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQ8D7q0xgzx_97XqeG6uZeIesWK14aaGo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "180705402227-fqj3vnfv6qbqj9ljc4kf77vo2k23v0lk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

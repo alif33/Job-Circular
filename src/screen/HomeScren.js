@@ -5,12 +5,12 @@ import { Header } from '../components/header'
 import JobItem from '../components/JobItem'
 import { Others, Jobs } from '../components/Button'
 import fb from '../../firebase'
+import admob, { MaxAdContentRating, BannerAd, BannerAdSize, TestIds } from '@react-native-firebase/admob';
 import _ from 'lodash'
 
+const bannerUnitId = __DEV__ ? TestIds.BANNER : 'ca-app-pub-1491039127351280/9364299646';
 const Home = props =>{
-
     const [list, setList] = React.useState(null);
-
     useEffect(()=>{
         fb.database().ref('/jobs').on('value', snapshot => {           
                 const jobList = _.map(snapshot.val(), (val, key)=>{
@@ -21,6 +21,16 @@ const Home = props =>{
                   })
                  setList(jobList)
         })
+
+        admob()
+            .setRequestConfiguration({
+                maxAdContentRating: MaxAdContentRating.PG,
+                tagForChildDirectedTreatment: true,
+                tagForUnderAgeOfConsent: true,
+            })
+            .then(() => {
+
+            });
 
     }, [])
     let jobList = null
@@ -46,8 +56,14 @@ const Home = props =>{
         <View style={styles.body}>            
             {jobList}         
         </View>
-        <View style={{flex: .1}}>
-            
+        <View style={{flex: .07, alignSelf: 'center'}}>
+        <BannerAd
+              unitId={bannerUnitId}
+              size={BannerAdSize.BANNER}
+              requestOptions={{
+                  requestNonPersonalizedAdsOnly: true,
+              }}
+        /> 
         </View> 
     </View>
   )
@@ -57,7 +73,7 @@ const styles = StyleSheet.create({
         flex: 1
     },
     body: {
-        flex: 0.73,
+        flex: 0.76,
         backgroundColor: '#fff'
     }
 })

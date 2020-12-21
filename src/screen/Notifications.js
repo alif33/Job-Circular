@@ -1,10 +1,53 @@
 import React, { useState } from 'react'
-import { View, Text, Switch, StyleSheet } from 'react-native'
-import Header from '../components/header'
+import { View, Text, Switch, StyleSheet, Button } from 'react-native'
+import { Header } from '../components/header'
+import AsyncStorage from '@react-native-community/async-storage'
 
 const Notifications = props =>{
-    const [isEnabled, setIsEnabled] = useState(false);
-    const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+    const [isEnabled, setIsEnabled] = useState(true);
+
+
+
+    (async () => {
+        const value = await AsyncStorage.getItem('notification');
+        if (value) {
+          console.log(value, '222')
+        }
+      })().catch(err => {
+        console.error(err);
+    });
+
+    const toggleSwitch = async() => {
+        console.log(isEnabled)
+        setIsEnabled(previousState => !previousState)
+        try {
+            let notification = {
+                mode: isEnabled
+            }
+            AsyncStorage.setItem(
+                'notification',
+                JSON.stringify(notification),
+                () => {
+                    AsyncStorage.getItem('notification', (err, result) => {
+                        console.log(result);
+                    });
+                }
+              );
+          } catch (error) {
+            console.log(error)
+        }
+    }
+    const showResult = async() =>{
+        console.log('Hello')
+        try {
+            const value = await AsyncStorage.getItem('notification');
+            if (value) {
+              console.log(value)
+            }
+          } catch (error) {
+            console.log(error)
+          }
+    }
   return(
     <View style={styles.container}>
     <Header navigation={props.navigation} />
@@ -16,6 +59,10 @@ const Notifications = props =>{
                 ios_backgroundColor="#3e3e3e"
                 onValueChange={toggleSwitch}
                 value={isEnabled}        
+            />
+            <Button
+                title = "Check"
+                onPress={showResult}
             />
         </View>
     </View>
